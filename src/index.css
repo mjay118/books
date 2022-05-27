@@ -9,6 +9,9 @@ body {
   background-color: cornflowerblue;
   color: whitesmoke;
 }
+h2{
+  color: cornflowerblue !important;
+}
 
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
