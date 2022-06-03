@@ -9,7 +9,7 @@ const MainApp = () => {
       <div>
         <Navbar color="light" expand="md" light>
           <NavbarBrand href="/">
-            <h2>Gugus Books</h2>
+            <h2>Gugu Books</h2>
           </NavbarBrand>
         </Navbar>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel } from "antd";
+import { Carousel, Space } from "antd";
 const contentStyle = {
   height: "160px",
   // color: '#fff',
@@ -10,7 +10,7 @@ const contentStyle = {
 
 const carouselContent = [
   {
-    text: "One way destination",
+    text: "One way destination for budding authors and readers.",
     image: require("../../assets/images/carousel_book1.jpg"),
   },
   {
@@ -30,13 +30,13 @@ const carouselContent = [
 const CarouselComponent = () => {
   return (
     <Carousel autoplay>
-      {carouselContent.map((item) => {
+      {carouselContent.map((item, index) => {
         return (
-          <div>
-            <img src={item.image} alt="" />
-            <h3 style={contentStyle} className="carousel-color">
-              {item.text}
-            </h3>
+          <div className="carousel-color space-align-block" key={index}>
+            <Space direction="horizontal">
+              <img src={item.image} alt="" height={200} width={400} />
+              <h3 style={contentStyle}>{item.text}</h3>
+            </Space>
           </div>
         );
       })}
