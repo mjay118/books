@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 import "antd/dist/antd.css";
 import CarouselComponent from "./CarouselComponent";
+import VideoComp from "./VideoComp";
 
 const MainApp = () => {
   return (
@@ -13,7 +14,7 @@ const MainApp = () => {
           </NavbarBrand>
         </Navbar>
       </div>
-      <CarouselComponent />
+      <VideoComp />
     </>
   );
 };
