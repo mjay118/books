@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  font-family: 'Dancing Script', cursive !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: white;
@@ -11,6 +10,8 @@ body {
 }
 h2{
   color: cornflowerblue !important;
+  font-family: 'Dancing Script', cursive !important;
+
 }
 video{
   object-fit: fill;
@@ -27,3 +28,36 @@ video{
     monospace;
 } */
 
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100%;
+}
+.modalform{
+  margin-left: 80px !important;
+}
+.register{
+  text-decoration: underline;
+  text-decoration-color: blue;
+}
+.ant-btn-primary {
+  margin-bottom: 11px;
+}
+p{
+  text-align: center;
+}
+.css-frs8jf-MuiBadge-root{
+  margin-top: -10px;
+}
+.dropdown-menu{
+  width: 128px !important;
+  min-width: 7px !important;
+  /* margin-top:10px !important; */
+}
