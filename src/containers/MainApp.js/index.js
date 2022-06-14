@@ -10,79 +10,79 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownItem,
-  DropdownMenu
-} from 'reactstrap';
+  DropdownMenu,
+} from "reactstrap";
 import CarouselComponent from "./CarouselComponent";
 import VideoComp from "./VideoComp";
 import LoginModal from "./LoginModal";
-import 'antd/dist/antd.css';
-import { Button, Modal } from 'antd';
-import { useCookies } from 'react-cookie';
+import "antd/dist/antd.css";
+import { Button, Modal } from "antd";
+import { useCookies } from "react-cookie";
 import jwt_decode from "jwt-decode";
-import { styled } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import { styled } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 // Request API.
-import axios from 'axios';
-import VendorList from './VendorList'
+import axios from "axios";
+import VendorList from "./VendorList";
 const MainApp = () => {
   const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      backgroundColor: '#44b700',
-      color: '#44b700',
+    "& .MuiBadge-badge": {
+      backgroundColor: "#44b700",
+      color: "#44b700",
       boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
+      "&::after": {
+        position: "absolute",
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: 'ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        animation: "ripple 1.2s infinite ease-in-out",
+        border: "1px solid currentColor",
         content: '""',
       },
     },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
+    "@keyframes ripple": {
+      "0%": {
+        transform: "scale(.8)",
         opacity: 1,
       },
-      '100%': {
-        transform: 'scale(2.4)',
+      "100%": {
+        transform: "scale(2.4)",
         opacity: 0,
       },
     },
   }));
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  console.log('xxxxx', cookies)
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  console.log("xxxxx", cookies);
   const [isOpen, setIsOpen] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = React.useState(false);
-  const [token, setToken] = React.useState('');
-  const [uname, setUname] = React.useState('')
+  const [token, setToken] = React.useState("");
+  const [uname, setUname] = React.useState("");
   const showModal = () => {
     setIsModalVisible(true);
   };
   const logout = () => {
-    setToken(localStorage.removeItem('token')
-    )
-  }
+    setToken(localStorage.removeItem("token"));
+  };
   useEffect(() => {
-    setToken(localStorage.getItem('token'))
+    setToken(localStorage.getItem("token"));
     if (token) {
       var decoded = jwt_decode(token);
       var id = decoded.id;
     }
-    axios.get(`https://hidden-beyond-89915.herokuapp.com/api/users/${id}`)
+    axios
+      .get(`https://hidden-beyond-89915.herokuapp.com/api/users/${id}`)
       .then((response) => {
         // Handle success.
-        setUname(response.data.username)
+        setUname(response.data.username);
       })
       .catch((error) => {
         // Handle error.
       });
-  })
+  }, []);
 
   return (
     <>
@@ -91,9 +91,17 @@ const MainApp = () => {
           <NavbarBrand href="/">
             <h2>Gugu Books</h2>
           </NavbarBrand>
-          <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
+          <NavbarToggler
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          />
           <Collapse isOpen={isOpen} navbar>
-            <Nav className="justify-content-end me-5" style={{ width: "100%" }} navbar>
+            <Nav
+              className="justify-content-end me-5"
+              style={{ width: "100%" }}
+              navbar
+            >
               <NavItem>
                 <NavLink href="/components/">About</NavLink>
               </NavItem>
@@ -104,57 +112,51 @@ const MainApp = () => {
               {token && (
                 <>
                   <NavItem>
-
-                    <UncontrolledDropdown
-                      inNavbar
-                      nav
-                    >
-                      <DropdownToggle
-                        caret
-                        nav
-                      >
+                    <UncontrolledDropdown inNavbar nav>
+                      <DropdownToggle caret nav>
                         <StyledBadge
                           overlap="circular"
-                          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                          variant="dot">
+                          anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "right",
+                          }}
+                          variant="dot"
+                        >
                           <Avatar>{uname[0]?.toUpperCase()}</Avatar>
-                        </StyledBadge>          </DropdownToggle>
+                        </StyledBadge>{" "}
+                      </DropdownToggle>
                       <DropdownMenu right>
-                        <DropdownItem onClick={logout}>
-                          Log Out
-                        </DropdownItem>
-                        <DropdownItem>
-                          Option 2
-                        </DropdownItem>
+                        <DropdownItem onClick={logout}>Log Out</DropdownItem>
+                        <DropdownItem>Option 2</DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem>
-                          Reset
-                        </DropdownItem>
+                        <DropdownItem>Reset</DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </NavItem>
-
-
                 </>
               )}
               {!token && (
-
                 <>
                   <NavItem>
-                    <NavLink
-                      onClick={showModal}>Login</NavLink>
+                    <NavLink onClick={showModal}>Login</NavLink>
                   </NavItem>
-                </>)}
-
+                </>
+              )}
             </Nav>
           </Collapse>
         </Navbar>
       </div>
       <VideoComp />
       <LoginModal
-        cookies={cookies} setCookie={setCookie} removeCookie={removeCookie}
-        isModalVisible={isModalVisible} showModal={showModal} setIsModalVisible={setIsModalVisible} setToken={setToken}></LoginModal>
-    {/* <VendorList/> */}
+        cookies={cookies}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+        isModalVisible={isModalVisible}
+        showModal={showModal}
+        setIsModalVisible={setIsModalVisible}
+        setToken={setToken}
+      ></LoginModal>
+      {/* <VendorList/> */}
     </>
   );
 };
