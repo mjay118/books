@@ -26,6 +26,7 @@ import Stack from "@mui/material/Stack";
 // Request API.
 // import axios from "axios";
 import { instance } from "../../util/connection/axios";
+import UserManagement from "../UerManagement";
 
 import VendorList from "./VendorList";
 const MainApp = () => {
@@ -129,6 +130,7 @@ const MainApp = () => {
                       </DropdownToggle>
                       <DropdownMenu right>
                         <DropdownItem onClick={logout}>Log Out</DropdownItem>
+                        <DropdownItem>View Profile</DropdownItem>
                         <DropdownItem>Option 2</DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem>Reset</DropdownItem>
