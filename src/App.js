@@ -1,6 +1,6 @@
 import "./App.css";
 import "antd/dist/antd.css";
-import MainApp from "./containers/MainApp.js";
+import MainApp from "./containers/MainApp";
 
 function App() {
   return (
