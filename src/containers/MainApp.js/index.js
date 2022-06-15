@@ -24,7 +24,9 @@ import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 // Request API.
-import axios from "axios";
+// import axios from "axios";
+import { instance } from "../../util/connection/axios";
+
 import VendorList from "./VendorList";
 const MainApp = () => {
   const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -73,8 +75,8 @@ const MainApp = () => {
       var decoded = jwt_decode(token);
       var id = decoded.id;
     }
-    axios
-      .get(`https://hidden-beyond-89915.herokuapp.com/api/users/${id}`)
+    instance
+      .get(`api/users/${id}`)
       .then((response) => {
         // Handle success.
         setUname(response.data.username);
@@ -82,7 +84,7 @@ const MainApp = () => {
       .catch((error) => {
         // Handle error.
       });
-  }, []);
+  }, [token]);
 
   return (
     <>
